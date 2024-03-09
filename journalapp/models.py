@@ -11,6 +11,12 @@ GENDER_CHOICES = (
     ("Female", "Female"),
 )
 
+LESSON_TYPES = (
+    ("Lecture", "Mühazirə"),
+    ("Practice", "Seminar"),
+    ("Laboratory", "Laboratoriya"),
+)
+
 
 class Faculty(models.Model):
     name = models.CharField(max_length=255)
@@ -86,7 +92,7 @@ class Lesson(models.Model):
     teacher = models.ForeignKey("TeacherProfile", on_delete=models.SET_NULL, null=True)
     subject = models.ForeignKey("Subject", on_delete=models.PROTECT)
     topic = models.CharField(max_length=255)
-    lesson_type = models.CharField(max_length=255)
+    lesson_type = models.CharField(max_length=255, choices=LESSON_TYPES)
     date = models.DateField()
     start_time = models.TimeField()
     end_time = models.TimeField()
